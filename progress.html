@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Onboarding Progress Dashboard</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+
+        /* Header */
+
+        .header {
+            background: #2563eb;
+            color: white;
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+
+        .header p {
+            margin-top: 8px;
+            font-size: 15px;
+        }
+
+
+        /* Main container */
+
+        .container {
+            width: 94%;
+            max-width: 1000px;
+            margin: 35px auto;
+        }
+
+
+        /* Cards */
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 23px;
+        }
+
+
+        /* Statistics */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+
+        .stat-card {
+            text-align: center;
+            padding: 22px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .stat-card h3 {
+            margin: 0 0 10px;
+            font-size: 15px;
+            color: #64748b;
+        }
+
+
+        .stat-card p {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+
+        /* Progress */
+
+        .progress-section {
+            margin-top: 30px;
+        }
+
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+            height: 22px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+
+        #progressBarFill {
+            width: 0%;
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+
+
+        /* Tasks */
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 18px 20px;
+            margin-bottom: 12px;
+
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+
+            transition: 0.2s;
+        }
+
+
+        .task:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+
+        .task input[type="checkbox"] {
+            width: 21px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+
+        .task-title {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+
+        /* Edit button */
+
+        .edit-btn {
+            width: auto;
+            margin: 0;
+            padding: 9px 18px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .edit-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* Back button */
+
+        .back-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #334155;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .back-btn:hover {
+            background: #1e293b;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 650px) {
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+
+            .card {
+                padding: 20px;
+            }
+
+
+            .task {
+                padding: 15px;
+            }
+
+
+            .task-title {
+                font-size: 14px;
+            }
+
+
+            .edit-btn {
+                padding: 8px 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>Onboarding Progress Dashboard</h1>
+
+        <p>Track and manage your onboarding activities</p>
+
+    </div>
+
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+
+        <!-- Progress Overview -->
+
+        <div class="card">
+
+            <h2>📊 Progress Overview</h2>
+
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <h3>Total Tasks</h3>
+
+                    <p id="totalTasks">0</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>Completed Tasks</h3>
+
+                    <p id="completedTasks">0</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>Remaining Tasks</h3>
+
+                    <p id="remainingTasks">0</p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Progress Bar -->
+
+            <div class="progress-section">
+
+                <div class="progress-label">
+
+                    <span>Overall Progress</span>
+
+                    <span>
+                        <span id="progressPercentage">0</span>%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div id="progressBarFill"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Checklist Tasks -->
+
+        <div class="card">
+
+            <h2>📋 Checklist Tasks</h2>
+
+
+            <div id="taskList"></div>
+
+
+            <button
+                class="back-btn"
+                onclick="goBack()"
+            >
+                ← Back to Role Selection
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <script src="progress.js"></script>
+
+
+</body>
+
+</html>

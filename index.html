@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Automated Onboarding Checklist</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+
+        /* Header */
+
+        .header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+
+        .header h1 {
+            margin: 0;
+            font-size: 34px;
+        }
+
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 16px;
+        }
+
+
+        /* Main */
+
+        .container {
+            width: 92%;
+            max-width: 700px;
+            margin: 45px auto;
+        }
+
+
+        /* Card */
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+
+        .description {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+
+        /* Form */
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+
+        select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 22px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+
+            background: white;
+            color: #334155;
+
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+
+        /* Generate button */
+
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .generate-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+
+        /* Message */
+
+        #message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
+        /* Task list */
+
+        #taskList {
+            margin-top: 25px;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+
+            .card {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>Automated Onboarding Checklist</h1>
+
+        <p>Start your onboarding journey</p>
+
+    </div>
+
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+
+        <div class="card">
+
+            <h2>Get Started</h2>
+
+            <p class="description">
+                Select your role and department to generate
+                your personalized onboarding checklist.
+            </p>
+
+
+
+            <!-- Role -->
+
+            <label for="role">
+                Select Role
+            </label>
+
+
+            <select id="role">
+
+                <option value="">
+                    -- Select Role --
+                </option>
+
+                <option value="Software Developer">
+                    Software Developer
+                </option>
+
+                <option value="Data Analyst">
+                    Data Analyst
+                </option>
+
+                <option value="HR Executive">
+                    HR Executive
+                </option>
+
+                <option value="Marketing Executive">
+                    Marketing Executive
+                </option>
+
+            </select>
+
+
+
+            <!-- Department -->
+
+            <label for="department">
+                Select Department
+            </label>
+
+
+            <select id="department">
+
+                <option value="">
+                    -- Select Department --
+                </option>
+
+                <option value="IT">
+                    IT
+                </option>
+
+                <option value="HR">
+                    HR
+                </option>
+
+                <option value="Finance">
+                    Finance
+                </option>
+
+                <option value="Marketing">
+                    Marketing
+                </option>
+
+            </select>
+
+
+
+            <!-- Generate -->
+
+            <button
+                class="generate-btn"
+                onclick="generateChecklist()"
+            >
+                Generate Checklist
+            </button>
+
+
+
+            <!-- Message -->
+
+            <div id="message"></div>
+
+
+            <!-- Tasks -->
+
+            <div id="taskList"></div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
